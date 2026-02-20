@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
+
 public class User {
 
    @Id
@@ -18,6 +19,18 @@ public class User {
 
    @Column(name = "email")
    private String email;
+
+   @OneToOne
+   @JoinColumn(name = "car_id")
+   private Car userCar;
+
+   public Car getUserCar() {
+      return userCar;
+   }
+
+   public void setUserCar(Car userCar) {
+      this.userCar = userCar;
+   }
 
    public User() {}
    
@@ -57,5 +70,14 @@ public class User {
 
    public void setEmail(String email) {
       this.email = email;
+   }
+
+   @Override
+   public String toString() {
+      return "User{" +
+              "id=" + id +
+              ", firstName='" + firstName + '\'' +
+              ", lastName='" + lastName + '\'' +
+              ", email='" + email + '\'' + '}';
    }
 }
